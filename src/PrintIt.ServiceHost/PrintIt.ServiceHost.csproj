@@ -4,16 +4,32 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
     <SelfContained>true</SelfContained>
-    <RuntimeIdentifier>win7-x64</RuntimeIdentifier>
+    <RuntimeIdentifiers>win-x64;linux-x64</RuntimeIdentifiers>
     <PlatformTarget>x64</PlatformTarget>
+    <Configurations>Debug;Release;WINDOWS_RELEASE;LINUX_RELEASE;abc</Configurations>
+  </PropertyGroup>
+  <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))" />
+
+  <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Linux'))">
+    <DefineConstants>$(DefineConstants);LINUX</DefineConstants>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WINDOWS_RELEASE|AnyCPU'">
+    <Optimize>True</Optimize>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='LINUX_RELEASE|AnyCPU'">
+    <Optimize>True</Optimize>
+  </PropertyGroup>
   <ItemGroup>
       <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Hosting.WindowsServices" Version="3.1.2" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Systemd" Version="6.0.0" />
+    <PackageReference Include="PDFium.Linux.x64" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,6 +47,18 @@
       <Link>pdfium.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\hubert.pieniazek\.nuget\packages\pdfium.linux.x64\1.0.0\build\pdfium_x64.so" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\hubert.pieniazek\.nuget\packages\pdfium.linux.x64\1.0.0\build\pdfium_x64.so" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\hubert.pieniazek\.nuget\packages\pdfium.linux.x64\1.0.0\build\pdfium_x64.so" />
   </ItemGroup>
 
 </Project>

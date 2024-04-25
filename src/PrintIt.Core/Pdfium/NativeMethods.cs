@@ -150,9 +150,12 @@ namespace PrintIt.Core.Pdfium
 
         private static class Imports
         {
-            private const string DllName = "pdfium.dll";
             private const CharSet PdfiumCharSet = CharSet.Ansi;
             private const CallingConvention PdfiumCallingConvention = CallingConvention.StdCall;
+
+        #if WINDOWS_RELEASE
+
+            private const string DllName = "pdfium.dll";
 
             [DllImport(DllName)]
             public static extern void FPDF_InitLibrary();
@@ -184,6 +187,43 @@ namespace PrintIt.Core.Pdfium
 
             [DllImport(DllName, CallingConvention = PdfiumCallingConvention)]
             public static extern void FPDF_ClosePage(IntPtr pageHandle);
+
+        #elif LINUX_RELEASE
+
+            private const string DllName = "pdfium_x64.so";
+
+            [DllImport(DllName)]
+            public static extern void FPDF_InitLibrary();
+
+            [DllImport(DllName)]
+            public static extern void FPDF_DestroyLibrary();
+
+            [DllImport(DllName, CallingConvention = PdfiumCallingConvention, CharSet = PdfiumCharSet)]
+            public static extern DocumentHandle FPDF_LoadMemDocument(IntPtr buffer, int size, string password);
+
+            [DllImport(DllName, CallingConvention = PdfiumCallingConvention)]
+            public static extern int FPDF_GetPageCount(DocumentHandle documentHandle);
+
+            [DllImport(DllName, CallingConvention = PdfiumCallingConvention)]
+            public static extern PageHandle FPDF_LoadPage(DocumentHandle documentHandle, int pageIndex);
+
+            [DllImport(DllName, CallingConvention = PdfiumCallingConvention)]
+            public static extern void FPDF_CloseDocument(IntPtr documentHandle);
+
+            [DllImport(DllName, CallingConvention = PdfiumCallingConvention)]
+            public static extern float FPDF_GetPageWidthF(PageHandle pageHandle);
+
+            [DllImport(DllName, CallingConvention = PdfiumCallingConvention)]
+            public static extern float FPDF_GetPageHeightF(PageHandle pageHandle);
+
+            [DllImport(DllName, CallingConvention = PdfiumCallingConvention)]
+            public static extern void FPDF_RenderPage(IntPtr hdc, PageHandle pageHandle, int startX, int startY,
+                int sizeX, int sizeY, int pageOrientation, int flags);
+
+            [DllImport(DllName, CallingConvention = PdfiumCallingConvention)]
+            public static extern void FPDF_ClosePage(IntPtr pageHandle);
+
+        #endif
         }
     }
 }

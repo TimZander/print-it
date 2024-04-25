@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29519.181
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrintIt.Core", "src\PrintIt.Core\PrintIt.Core.csproj", "{758C3632-8867-42F1-B7DC-D38FBE308DA3}"
 EndProject
@@ -12,30 +12,44 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E2EF101E-2A11-4B18-9528-77EE4F8F1061}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		.github\workflows\build-test.yml = .github\workflows\build-test.yml
 		ca.ruleset = ca.ruleset
 		LICENSE = LICENSE
 		README.md = README.md
-		.github\workflows\build-test.yml = .github\workflows\build-test.yml
 	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		LINUX_RELEASE|Any CPU = LINUX_RELEASE|Any CPU
 		Release|Any CPU = Release|Any CPU
+		WINDOWS_RELEASE|Any CPU = WINDOWS_RELEASE|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{758C3632-8867-42F1-B7DC-D38FBE308DA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{758C3632-8867-42F1-B7DC-D38FBE308DA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{758C3632-8867-42F1-B7DC-D38FBE308DA3}.LINUX_RELEASE|Any CPU.ActiveCfg = LINUX_RELEASE|Any CPU
+		{758C3632-8867-42F1-B7DC-D38FBE308DA3}.LINUX_RELEASE|Any CPU.Build.0 = LINUX_RELEASE|Any CPU
 		{758C3632-8867-42F1-B7DC-D38FBE308DA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{758C3632-8867-42F1-B7DC-D38FBE308DA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{758C3632-8867-42F1-B7DC-D38FBE308DA3}.WINDOWS_RELEASE|Any CPU.ActiveCfg = WINDOWS_RELEASE|Any CPU
+		{758C3632-8867-42F1-B7DC-D38FBE308DA3}.WINDOWS_RELEASE|Any CPU.Build.0 = WINDOWS_RELEASE|Any CPU
 		{0D9325C3-C396-4C28-8473-9CF6C0A4B0AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0D9325C3-C396-4C28-8473-9CF6C0A4B0AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D9325C3-C396-4C28-8473-9CF6C0A4B0AE}.LINUX_RELEASE|Any CPU.ActiveCfg = LINUX_RELEASE|Any CPU
+		{0D9325C3-C396-4C28-8473-9CF6C0A4B0AE}.LINUX_RELEASE|Any CPU.Build.0 = LINUX_RELEASE|Any CPU
 		{0D9325C3-C396-4C28-8473-9CF6C0A4B0AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D9325C3-C396-4C28-8473-9CF6C0A4B0AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D9325C3-C396-4C28-8473-9CF6C0A4B0AE}.WINDOWS_RELEASE|Any CPU.ActiveCfg = WINDOWS_RELEASE|Any CPU
+		{0D9325C3-C396-4C28-8473-9CF6C0A4B0AE}.WINDOWS_RELEASE|Any CPU.Build.0 = WINDOWS_RELEASE|Any CPU
 		{2BC0EEC6-8F22-4E13-93ED-1750940121EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2BC0EEC6-8F22-4E13-93ED-1750940121EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BC0EEC6-8F22-4E13-93ED-1750940121EC}.LINUX_RELEASE|Any CPU.ActiveCfg = LINUX_RELEASE|Any CPU
+		{2BC0EEC6-8F22-4E13-93ED-1750940121EC}.LINUX_RELEASE|Any CPU.Build.0 = LINUX_RELEASE|Any CPU
 		{2BC0EEC6-8F22-4E13-93ED-1750940121EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2BC0EEC6-8F22-4E13-93ED-1750940121EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BC0EEC6-8F22-4E13-93ED-1750940121EC}.WINDOWS_RELEASE|Any CPU.ActiveCfg = WINDOWS_RELEASE|Any CPU
+		{2BC0EEC6-8F22-4E13-93ED-1750940121EC}.WINDOWS_RELEASE|Any CPU.Build.0 = WINDOWS_RELEASE|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

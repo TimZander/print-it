@@ -70,10 +70,17 @@ namespace PrintIt.Core
                 }
             }
 
-            PrintState state = PrintStateFactory.Create(document, pageRange);
-            printDocument.PrintPage += (_, e) => PrintDocumentOnPrintPage(e, state);
-            printDocument.QueryPageSettings += (_, e) => MyPrintQueryPageSettingsEvent(e, chosenSource);
-            printDocument.Print();
+            try
+            {
+                PrintState state = PrintStateFactory.Create(document, pageRange);
+                printDocument.PrintPage += (_, e) => PrintDocumentOnPrintPage(e, state);
+                printDocument.QueryPageSettings += (_, e) => MyPrintQueryPageSettingsEvent(e, chosenSource);
+                printDocument.Print();
+            }
+            catch (Exception ex )
+            {
+                Console.WriteLine(ex.Message );
+            }
         }
 
         private void PrintDocumentOnPrintPage(PrintPageEventArgs e, PrintState state)

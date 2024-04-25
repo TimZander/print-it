@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using PrintIt.Core.Pdfium;
+using Microsoft.Extensions.Hosting.Systemd;
+using System;
 
 namespace PrintIt.ServiceHost
 {
@@ -17,7 +19,7 @@ namespace PrintIt.ServiceHost
         public static void Main(string[] args)
         {
             PdfLibrary.EnsureInitialized();
-
+            
             var isService = !(Debugger.IsAttached || args.Contains("--console"));
 
             if (isService)
@@ -28,16 +30,7 @@ namespace PrintIt.ServiceHost
             }
 
             IWebHost host = CreateWebHostBuilder(args.Where(arg => arg != "--console").ToArray(), isService).Build();
-
-            if (isService)
-            {
-                using var customWebHostService = new CustomWebHostService(host);
-                ServiceBase.Run(customWebHostService);
-            }
-            else
-            {
-                host.Run();
-            }
+            host.Run();
         }
 
         private static IWebHostBuilder CreateWebHostBuilder(string[] args, bool isService)
@@ -57,12 +50,6 @@ namespace PrintIt.ServiceHost
                         .AddFilter("Microsoft.AspNetCore.Authentication", LogLevel.Warning)
                         .AddFilter("System", LogLevel.Warning)
                         .AddConsole();
-
-                    if (isService)
-                        logging.AddEventLog(settings =>
-                        {
-                            settings.SourceName = "PrintIt";
-                        });
                 })
                 .UseStartup<Startup>()
                 .UseUrls(configuration.GetValue<string>("Host:Urls"))
